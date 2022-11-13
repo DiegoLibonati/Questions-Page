@@ -33,7 +33,7 @@ I made a web page that works as a section of a future page which is a section of
 
 ## Portfolio Link
 
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Questions%20page`
+`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Questions%20Page`
 
 ## Video
 
