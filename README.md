@@ -13,13 +13,20 @@
 2. Join to the correct path of the clone
 3. Open index.html in your favorite navigator
 
+---
+
+1. Clone the repository
+2. Join to the correct path of the clone
+3. Execute: `yarn install`
+4. Execute: `yarn dev`
+
 ## Description
 
 I made a web page that works as a section of a future page which is a section of frequently asked questions or faq. When a question is opened it closes a question that was open.
 
 ## Technologies used
 
-1. Javascript
+1. Typescript
 2. CSS3
 3. HTML5
 
@@ -32,13 +39,13 @@ https://user-images.githubusercontent.com/99032604/198900580-577c4f08-4686-4de3-
 Here we get all the buttons of all the questions that will help us to display the information of each question:
 
 ```
-const btnsOpenQuestions = document.querySelectorAll(".question-btn");
+const btnsOpenQuestions = document.querySelectorAll(".question-btn") as NodeList;
 ```
 
 Here is each question with all its elements:
 
 ```
-const questionContainer = document.querySelectorAll(".question");
+const questionContainer = document.querySelectorAll(".question") as NodeList;
 ```
 
 In this case we go through all the buttons and for each button we make an addEventListener that will be when the button is clicked. When you click on a button, the text element inside the question that is hidden, it will first check if there is any open answer. If there is it will take out the class to show and it will add this class to the question that the button was touched to show:
@@ -46,15 +53,17 @@ In this case we go through all the buttons and for each button we make an addEve
 ```
 btnsOpenQuestions.forEach(function (btn) {
   btn.addEventListener("click", (e) => {
-    const question = e.currentTarget.parentElement.parentElement;
+    const target = e.currentTarget as HTMLElement
+    const oldQuestionOpen = target.parentElement?.parentElement;
 
     questionContainer.forEach(function (newQuestion) {
-      if (newQuestion !== question) {
-        newQuestion.classList.remove("show-text");
+      const openNewQuestion = newQuestion as HTMLElement
+      if (openNewQuestion !== oldQuestionOpen) {
+        openNewQuestion.classList.remove("show-text");
       }
     });
 
-    question.classList.toggle("show-text");
+    oldQuestionOpen?.classList.toggle("show-text");
   });
 });
 ```
