@@ -36,7 +36,7 @@ I made a web page that works as a section of a future page which is a section of
 
 ## Video
 
-https://user-images.githubusercontent.com/99032604/198900580-577c4f08-4686-4de3-99a7-d2fdc5e43465.mp4
+https://github.com/DiegoLibonati/Questions-Page/assets/99032604/5dd910fe-d8ce-489a-85b4-3ee3c345e2d1
 
 ## Documentation
 
