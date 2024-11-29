@@ -7,7 +7,6 @@ const handleOpenQuestion = (e: Event) => {
   const questionOpen = document.querySelector(
     ".question.show-text"
   ) as HTMLDivElement;
-  console.log(questionOpen);
 
   if (questionOpen !== oldQuestionOpen)
     questionOpen?.classList.remove("show-text");
