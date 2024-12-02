@@ -1,19 +1,11 @@
 import { screen } from "@testing-library/dom";
 import user from "@testing-library/user-event";
 
-import fs from "fs";
-import path from "path";
-
-const INITIAL_HTML: string = fs.readFileSync(
-  path.resolve(__dirname, "../index.html"),
-  "utf8"
-);
+import { OFFICIAL_BODY } from "./tests/jest.setup";
 
 beforeEach(() => {
-  jest.resetModules();
-  const body = INITIAL_HTML.match(/<body[^>]*>([\s\S]*?)<\/body>/i)![1];
+  document.body.innerHTML = OFFICIAL_BODY;
 
-  document.body.innerHTML = body;
   require("./index.ts");
   document.dispatchEvent(new Event("DOMContentLoaded"));
 });
