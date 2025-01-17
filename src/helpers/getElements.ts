@@ -1,4 +1,4 @@
 export const getElements = () => ({
-  btnsOpenQuestions: document.querySelectorAll(".question-btn") as NodeList,
-  questionOpen: document.querySelector(".question.show-text") as HTMLDivElement,
+  btnsOpenQuestions: document.querySelectorAll(".question__wrapper__header__btn") as NodeList,
+  questionOpen: document.querySelector(".question__wrapper.question--show__text") as HTMLDivElement,
 });
