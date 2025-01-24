@@ -7,9 +7,9 @@ const handleOpenQuestion = (e: Event) => {
   const oldQuestionOpen = target.parentElement?.parentElement as HTMLDivElement;
 
   if (questionOpen !== oldQuestionOpen)
-    questionOpen?.classList.remove("question--show__text");
+    questionOpen?.classList.remove("question--show");
 
-  oldQuestionOpen?.classList.toggle("question--show__text");
+  oldQuestionOpen?.classList.toggle("question--show");
 };
 
 const onInit = () => {
