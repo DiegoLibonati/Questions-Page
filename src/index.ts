@@ -1,23 +1,9 @@
-import { getElements } from "@src/helpers/getElements";
-
-const handleOpenQuestion = (e: Event) => {
-  const { questionOpen } = getElements();
-
-  const target = e.currentTarget as HTMLButtonElement;
-  const oldQuestionOpen = target.parentElement?.parentElement as HTMLDivElement;
-
-  if (questionOpen !== oldQuestionOpen)
-    questionOpen?.classList.remove("question--show");
-
-  oldQuestionOpen?.classList.toggle("question--show");
-};
+import { QuestionsPage } from "@src/pages/QuestionsPage/QuestionsPage";
 
 const onInit = () => {
-  const { btnsOpenQuestions } = getElements();
-
-  btnsOpenQuestions.forEach((btn) =>
-    btn.addEventListener("click", (e) => handleOpenQuestion(e))
-  );
+  const app = document.querySelector<HTMLDivElement>("#app")!;
+  const questionsPage = QuestionsPage();
+  app.appendChild(questionsPage);
 };
 
 document.addEventListener("DOMContentLoaded", onInit);
