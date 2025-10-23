@@ -31,7 +31,7 @@ describe("QuestionsPage.ts", () => {
     test("It should render the section with class 'questions'", () => {
       renderComponent();
 
-      const section = document.querySelector(".questions");
+      const section = document.querySelector<HTMLElement>(".questions");
       expect(section).toBeInTheDocument();
       expect(section?.tagName).toBe("SECTION");
     });
@@ -39,7 +39,7 @@ describe("QuestionsPage.ts", () => {
     test("It should render the header article and title", () => {
       renderComponent();
 
-      const header = document.querySelector(".questions__header");
+      const header = document.querySelector<HTMLElement>(".questions__header");
       const title = screen.getByText("General Questions");
 
       expect(header).toBeInTheDocument();
@@ -52,7 +52,7 @@ describe("QuestionsPage.ts", () => {
     test("It should render all questions from questionsData", () => {
       renderComponent();
 
-      const questions = document.querySelectorAll(".question");
+      const questions = document.querySelectorAll<HTMLDivElement>(".question");
       expect(questions.length).toBe(questionsData.length);
     });
 
@@ -70,12 +70,12 @@ describe("QuestionsPage.ts", () => {
   });
 
   const clickQuestion = async (id: string): Promise<HTMLDivElement> => {
-    const question = document.querySelector(`#${id}`) as HTMLDivElement;
-    const button = question.querySelector(
+    const question = document.querySelector<HTMLDivElement>(`#${id}`);
+    const button = question!.querySelector<HTMLButtonElement>(
       ".question__btn-manage"
-    ) as HTMLButtonElement;
-    await user.click(button);
-    return question;
+    );
+    await user.click(button!);
+    return question!;
   };
 
   describe("Interaction Tests.", () => {
@@ -112,8 +112,8 @@ describe("QuestionsPage.ts", () => {
     test("It should append all Question components to .questions section", () => {
       renderComponent();
 
-      const section = document.querySelector(".questions");
-      const children = section?.querySelectorAll(".question");
+      const section = document.querySelector<HTMLElement>(".questions");
+      const children = section?.querySelectorAll<HTMLDivElement>(".question");
 
       expect(section).toBeInTheDocument();
       expect(children?.length).toBe(questionsData.length);
@@ -122,7 +122,7 @@ describe("QuestionsPage.ts", () => {
     test("Each question should be a DIV element", () => {
       renderComponent();
 
-      const questions = document.querySelectorAll(".question");
+      const questions = document.querySelectorAll<HTMLDivElement>(".question");
       questions.forEach((q) => expect(q.tagName).toBe("DIV"));
     });
   });

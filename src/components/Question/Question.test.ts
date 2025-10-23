@@ -10,15 +10,12 @@ type RenderComponent = {
   props: { onClick: jest.Mock } & QuestionProps;
 };
 
-const renderComponent = (props: QuestionProps): RenderComponent => {
-  const questionProps = {
-    ...props,
-    onClick: jest.fn(),
-  };
-
-  const container = Question(questionProps);
+const renderComponent = (
+  props: { onClick: jest.Mock } & QuestionProps
+): RenderComponent => {
+  const container = Question(props);
   document.body.appendChild(container);
-  return { container: container, props: questionProps };
+  return { container: container, props };
 };
 
 describe("Question.ts", () => {
@@ -34,7 +31,7 @@ describe("Question.ts", () => {
 
   describe("General Tests.", () => {
     test("It should render the component structure", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "What is React?",
         description: "React is a JavaScript library",
@@ -48,7 +45,7 @@ describe("Question.ts", () => {
     });
 
     test("It should return HTMLDivElement", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Question Title",
         description: "Question Description",
@@ -63,7 +60,7 @@ describe("Question.ts", () => {
 
   describe("Props Rendering Tests.", () => {
     test("It should use correct id", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "unique-question-id",
         title: "Title",
         description: "Description",
@@ -76,7 +73,7 @@ describe("Question.ts", () => {
     });
 
     test("It should display correct title", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "What is TypeScript?",
         description: "Description",
@@ -92,7 +89,7 @@ describe("Question.ts", () => {
     });
 
     test("It should display correct description", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "This is the detailed description of the question",
@@ -112,7 +109,7 @@ describe("Question.ts", () => {
     });
 
     test("It should render title as paragraph element", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Test Title",
         description: "Description",
@@ -121,14 +118,15 @@ describe("Question.ts", () => {
 
       renderComponent(props);
 
-      const title = document.querySelector(".question__title");
+      const title =
+        document.querySelector<HTMLParagraphElement>(".question__title");
 
       expect(title).toBeInstanceOf(HTMLParagraphElement);
       expect(title?.tagName).toBe("P");
     });
 
     test("It should render description as paragraph element", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "Test Description",
@@ -137,7 +135,9 @@ describe("Question.ts", () => {
 
       renderComponent(props);
 
-      const description = document.querySelector(".question__description");
+      const description = document.querySelector<HTMLParagraphElement>(
+        ".question__description"
+      );
 
       expect(description).toBeInstanceOf(HTMLParagraphElement);
       expect(description?.tagName).toBe("P");
@@ -146,7 +146,7 @@ describe("Question.ts", () => {
 
   describe("Button Tests.", () => {
     test("It should render button with correct type", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "Description",
@@ -161,7 +161,7 @@ describe("Question.ts", () => {
     });
 
     test("It should render button with correct aria-label", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "Description",
@@ -176,7 +176,7 @@ describe("Question.ts", () => {
     });
 
     test("It should render button with correct class", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "Description",
@@ -191,7 +191,7 @@ describe("Question.ts", () => {
     });
 
     test("It should render button with + text content", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "Description",
@@ -208,7 +208,7 @@ describe("Question.ts", () => {
 
   describe("Click Event Tests.", () => {
     test("It should call onClick when button is clicked", async () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "Description",
@@ -225,7 +225,7 @@ describe("Question.ts", () => {
     });
 
     test("It should pass event and id to onClick", async () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-123",
         title: "Title",
         description: "Description",
@@ -245,7 +245,7 @@ describe("Question.ts", () => {
     });
 
     test("It should call onClick with correct id parameter", async () => {
-      const props: QuestionProps = {
+      const props = {
         id: "specific-question-id",
         title: "Title",
         description: "Description",
@@ -263,7 +263,7 @@ describe("Question.ts", () => {
     });
 
     test("It should call onClick multiple times on multiple clicks", async () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "Description",
@@ -282,7 +282,7 @@ describe("Question.ts", () => {
     });
 
     test("It should attach click event listener to button", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "Description",
@@ -301,7 +301,7 @@ describe("Question.ts", () => {
 
   describe("Different IDs Tests.", () => {
     test("It should handle simple string id", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "simple",
         title: "Title",
         description: "Description",
@@ -314,7 +314,7 @@ describe("Question.ts", () => {
     });
 
     test("It should handle id with dashes", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-with-dashes",
         title: "Title",
         description: "Description",
@@ -327,7 +327,7 @@ describe("Question.ts", () => {
     });
 
     test("It should handle id with underscores", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question_with_underscores",
         title: "Title",
         description: "Description",
@@ -340,7 +340,7 @@ describe("Question.ts", () => {
     });
 
     test("It should handle numeric id", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-123",
         title: "Title",
         description: "Description",
@@ -355,14 +355,14 @@ describe("Question.ts", () => {
 
   describe("Multiple Questions Tests.", () => {
     test("It should render multiple questions independently", () => {
-      const props1: QuestionProps = {
+      const props1 = {
         id: "question-1",
         title: "First Question",
         description: "First Description",
         onClick: jest.fn(),
       };
 
-      const props2: QuestionProps = {
+      const props2 = {
         id: "question-2",
         title: "Second Question",
         description: "Second Description",
@@ -372,9 +372,10 @@ describe("Question.ts", () => {
       renderComponent(props1);
       renderComponent(props2);
 
-      const question1 = document.getElementById("question-1");
-      const question2 = document.getElementById("question-2");
-      const allQuestions = document.querySelectorAll(".question-wrapper");
+      const question1 = document.querySelector<HTMLDivElement>("#question-1");
+      const question2 = document.querySelector<HTMLDivElement>("#question-2");
+      const allQuestions =
+        document.querySelectorAll<HTMLDivElement>(".question-wrapper");
 
       expect(question1).toBeInTheDocument();
       expect(question2).toBeInTheDocument();
@@ -382,14 +383,14 @@ describe("Question.ts", () => {
     });
 
     test("It should maintain separate content for each question", () => {
-      const props1: QuestionProps = {
+      const props1 = {
         id: "question-1",
         title: "Title A",
         description: "Description A",
         onClick: jest.fn(),
       };
 
-      const props2: QuestionProps = {
+      const props2 = {
         id: "question-2",
         title: "Title B",
         description: "Description B",
@@ -399,10 +400,16 @@ describe("Question.ts", () => {
       const { container: question1 } = renderComponent(props1);
       const { container: question2 } = renderComponent(props2);
 
-      const title1 = question1.querySelector(".question__title");
-      const title2 = question2.querySelector(".question__title");
-      const desc1 = question1.querySelector(".question__description");
-      const desc2 = question2.querySelector(".question__description");
+      const title1 =
+        question1.querySelector<HTMLParagraphElement>(".question__title");
+      const title2 =
+        question2.querySelector<HTMLParagraphElement>(".question__title");
+      const desc1 = question1.querySelector<HTMLParagraphElement>(
+        ".question__description"
+      );
+      const desc2 = question2.querySelector<HTMLParagraphElement>(
+        ".question__description"
+      );
 
       expect(title1?.textContent).toBe("Title A");
       expect(title2?.textContent).toBe("Title B");
@@ -411,14 +418,14 @@ describe("Question.ts", () => {
     });
 
     test("It should have unique ids for each question", () => {
-      const props1: QuestionProps = {
+      const props1 = {
         id: "unique-1",
         title: "Question 1",
         description: "Description 1",
         onClick: jest.fn(),
       };
 
-      const props2: QuestionProps = {
+      const props2 = {
         id: "unique-2",
         title: "Question 2",
         description: "Description 2",
@@ -435,7 +442,7 @@ describe("Question.ts", () => {
   describe("Content Tests.", () => {
     test("It should handle long title", () => {
       const longTitle = "This is a very long question title ".repeat(5).trim();
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: longTitle,
         description: "Description",
@@ -458,7 +465,7 @@ describe("Question.ts", () => {
       const longDescription = "This is a very long description "
         .repeat(10)
         .trim();
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: longDescription,
@@ -467,14 +474,16 @@ describe("Question.ts", () => {
 
       renderComponent(props);
 
-      const description = document.querySelector(".question__description");
+      const description = document.querySelector<HTMLParagraphElement>(
+        ".question__description"
+      );
       expect(description?.textContent?.trim()).toBe(longDescription);
     });
   });
 
   describe("DOM Structure Tests.", () => {
     test("It should have correct header structure", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "Description",
@@ -483,9 +492,13 @@ describe("Question.ts", () => {
 
       renderComponent(props);
 
-      const header = document.querySelector(".question__header");
-      const title = header?.querySelector(".question__title");
-      const button = header?.querySelector(".question__btn-manage");
+      const header =
+        document.querySelector<HTMLDivElement>(".question__header");
+      const title =
+        header?.querySelector<HTMLParagraphElement>(".question__title");
+      const button = header?.querySelector<HTMLButtonElement>(
+        ".question__btn-manage"
+      );
 
       expect(header).toBeInTheDocument();
       expect(title).toBeInTheDocument();
@@ -493,7 +506,7 @@ describe("Question.ts", () => {
     });
 
     test("It should nest content inside question", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "Description",
@@ -502,9 +515,12 @@ describe("Question.ts", () => {
 
       const { container } = renderComponent(props);
 
-      const question = container.querySelector(".question");
-      const content = question?.querySelector(".question__content");
-      const description = content?.querySelector(".question__description");
+      const question = container.querySelector<HTMLDivElement>(".question");
+      const content =
+        question?.querySelector<HTMLDivElement>(".question__content");
+      const description = content?.querySelector<HTMLParagraphElement>(
+        ".question__description"
+      );
 
       expect(question).toBeInTheDocument();
       expect(content).toBeInTheDocument();
@@ -512,7 +528,7 @@ describe("Question.ts", () => {
     });
 
     test("It should nest header and content inside question", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "Description",
@@ -521,9 +537,11 @@ describe("Question.ts", () => {
 
       const { container } = renderComponent(props);
 
-      const question = container.querySelector(".question");
-      const header = question?.querySelector(".question__header");
-      const content = question?.querySelector(".question__content");
+      const question = container.querySelector<HTMLDivElement>(".question");
+      const header =
+        question?.querySelector<HTMLDivElement>(".question__header");
+      const content =
+        question?.querySelector<HTMLDivElement>(".question__content");
 
       expect(header).toBeInTheDocument();
       expect(content).toBeInTheDocument();
@@ -532,7 +550,7 @@ describe("Question.ts", () => {
 
   describe("Accessibility Tests.", () => {
     test("It should have aria-label on button", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "Description",
@@ -547,7 +565,7 @@ describe("Question.ts", () => {
     });
 
     test("It should be keyboard accessible", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "Description",
@@ -563,7 +581,7 @@ describe("Question.ts", () => {
     });
 
     test("It should be a button element for accessibility", () => {
-      const props: QuestionProps = {
+      const props = {
         id: "question-1",
         title: "Title",
         description: "Description",
