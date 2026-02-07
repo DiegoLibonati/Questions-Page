@@ -1,9 +1,13 @@
-import { QuestionsPage } from "@src/pages/QuestionsPage/QuestionsPage";
+import "@/index.css";
+import { QuestionsPage } from "@/pages/QuestionsPage/QuestionsPage";
 
-const onInit = () => {
-  const app = document.querySelector<HTMLDivElement>("#app")!;
-  const questionsPage = QuestionsPage();
-  app.appendChild(questionsPage);
+const onInit = (): void => {
+  const app = document.querySelector<HTMLDivElement>("#app");
+
+  if (app) {
+    const questionsPage = QuestionsPage();
+    app.appendChild(questionsPage);
+  }
 };
 
 document.addEventListener("DOMContentLoaded", onInit);

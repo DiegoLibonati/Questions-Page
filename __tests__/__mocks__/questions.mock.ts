@@ -1,6 +1,6 @@
 import type { Question } from "@/types/app";
 
-const questions: Question[] = [
+export const questionsMock: Question[] = [
   {
     id: "Q1",
     title: "Question 1",
@@ -14,5 +14,3 @@ const questions: Question[] = [
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis, et eos sint expedita quisquam quia. Suscipit at architecto molestiae inventore laborum, accusantium, dolorum delectus non et cumque facere consectetur quis.",
   },
 ];
-
-export default questions;

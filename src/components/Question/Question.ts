@@ -1,13 +1,14 @@
-import { QuestionProps } from "@src/entities/props";
+import type { QuestionProps } from "@/types/props";
+import type { ButtonComponent, QuestionComponent } from "@/types/components";
 
-import "@src/components/Question/Question.css";
+import "@/components/Question/Question.css";
 
 export const Question = ({
   id,
   title,
   description,
   onClick,
-}: QuestionProps): HTMLDivElement => {
+}: QuestionProps): QuestionComponent => {
   const divRoot = document.createElement("div");
   divRoot.className = "question-wrapper";
   divRoot.id = id;
@@ -33,11 +34,21 @@ export const Question = ({
     </div>
   `;
 
-  const questionBtn = divRoot.querySelector<HTMLButtonElement>(
+  const questionBtn = divRoot.querySelector<ButtonComponent>(
     ".question__btn-manage"
   );
 
-  questionBtn?.addEventListener("click", (e) => onClick(e, id));
+  if (questionBtn) {
+    questionBtn.addEventListener("click", (e) => {
+      onClick(e, id);
+    });
+
+    questionBtn.cleanup = (): void => {
+      questionBtn.removeEventListener("click", (e) => {
+        onClick(e, id);
+      });
+    };
+  }
 
   return divRoot;
 };

@@ -13,7 +13,7 @@
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
-  background: var(--secondary-color);
+  background: var(--color-secondary);
   margin: 1rem;
   width: 90%;
   border-radius: 1rem;
@@ -30,14 +30,14 @@
 
 .question__title {
   font-size: 1.5rem;
-  color: var(--white-color);
+  color: var(--color-white);
 }
 
 .question__btn-manage {
   font-size: 1.5rem;
   background: none;
   border: none;
-  color: var(--white-color);
+  color: var(--color-white);
   cursor: pointer;
 }
 
@@ -51,5 +51,5 @@
   margin-bottom: 1rem;
   text-align: justify;
   font-size: 1.5rem;
-  color: var(--white-color);
+  color: var(--color-white);
 }

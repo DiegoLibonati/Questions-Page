@@ -1,23 +1,13 @@
-import { Question } from "@src/components/Question/Question";
+import type { PageElement } from "@/types/pages";
 
-import questionsData from "@src/constants/questions";
+import { Question } from "@/components/Question/Question";
 
-import "@src/pages/QuestionsPage/QuestionsPage.css";
+import questionsData from "@/constants/questions";
 
-const onQuestionClick = (_: MouseEvent, id: string) => {
-  const question = document.querySelector<HTMLDivElement>(`#${id}`);
-  const questionOpen =
-    document.querySelector<HTMLDivElement>(".question--show");
+import "@/pages/QuestionsPage/QuestionsPage.css";
 
-  if (questionOpen) questionOpen.classList.remove("question--show");
-
-  if (question === questionOpen) return;
-
-  question?.classList.add("question--show");
-};
-
-export const QuestionsPage = (): HTMLElement => {
-  const main = document.createElement("main");
+export const QuestionsPage = (): PageElement => {
+  const main = document.createElement("main") as PageElement;
   main.className = "questions-page";
 
   main.innerHTML = `
@@ -27,6 +17,17 @@ export const QuestionsPage = (): HTMLElement => {
         </article>
     </section>
   `;
+
+  const onQuestionClick = (_: MouseEvent, id: string): void => {
+    const question = main.querySelector<HTMLDivElement>(`#${id}`);
+    const questionOpen = main.querySelector<HTMLDivElement>(".question--show");
+
+    if (questionOpen) questionOpen.classList.remove("question--show");
+
+    if (question === questionOpen) return;
+
+    question?.classList.add("question--show");
+  };
 
   const questions = main.querySelector<HTMLElement>(".questions");
 
@@ -39,6 +40,10 @@ export const QuestionsPage = (): HTMLElement => {
     });
 
     questions?.append(questionComponent);
+
+    main.cleanup = (): void => {
+      questionComponent.cleanup?.();
+    };
   });
 
   return main;
