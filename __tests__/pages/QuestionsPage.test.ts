@@ -11,7 +11,7 @@ jest.doMock("@/constants/questions", () => ({
   default: questionsMock,
 }));
 
-const renderComponent = (): Page => {
+const renderPage = (): Page => {
   const container = QuestionsPage();
   document.body.appendChild(container);
   return container;
@@ -36,7 +36,7 @@ describe("QuestionsPage", () => {
 
   describe("General Tests", () => {
     it("should render the main component with correct class", () => {
-      renderComponent();
+      renderPage();
 
       const main = screen.getByRole("main");
       expect(main).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe("QuestionsPage", () => {
     });
 
     it("should render the section with class 'questions'", () => {
-      const container = renderComponent();
+      const container = renderPage();
 
       const section = container.querySelector<HTMLElement>(".questions");
       expect(section).toBeInTheDocument();
@@ -52,7 +52,7 @@ describe("QuestionsPage", () => {
     });
 
     it("should render the header article and title", () => {
-      const container = renderComponent();
+      const container = renderPage();
 
       const header = container.querySelector<HTMLElement>(".questions__header");
       const title = screen.getByRole("heading", {
@@ -67,14 +67,14 @@ describe("QuestionsPage", () => {
 
   describe("Questions Rendering Tests", () => {
     it("should render all questions from questionsData", () => {
-      const container = renderComponent();
+      const container = renderPage();
 
       const questions = container.querySelectorAll<HTMLDivElement>(".question");
       expect(questions).toHaveLength(questionsMock.length);
     });
 
     it("should render each question title", () => {
-      renderComponent();
+      renderPage();
 
       questionsMock.forEach(({ title }) => {
         expect(screen.getByText(title)).toBeInTheDocument();
@@ -82,7 +82,7 @@ describe("QuestionsPage", () => {
     });
 
     it("should render all question descriptions", () => {
-      const container = renderComponent();
+      const container = renderPage();
 
       const descriptions = container.querySelectorAll<HTMLParagraphElement>(
         ".question__description"
@@ -94,7 +94,7 @@ describe("QuestionsPage", () => {
   describe("Interaction Tests", () => {
     it("should open question when clicked", async () => {
       const user = userEvent.setup();
-      renderComponent();
+      renderPage();
 
       const firstQuestion = await clickQuestion(questionsMock[0]!.id, user);
       expect(firstQuestion).toHaveClass("question--show");
@@ -102,7 +102,7 @@ describe("QuestionsPage", () => {
 
     it("should close previously open question when clicking another", async () => {
       const user = userEvent.setup();
-      renderComponent();
+      renderPage();
 
       const first = await clickQuestion(questionsMock[0]!.id, user);
       expect(first).toHaveClass("question--show");
@@ -114,7 +114,7 @@ describe("QuestionsPage", () => {
 
     it("should close question if clicked twice", async () => {
       const user = userEvent.setup();
-      renderComponent();
+      renderPage();
 
       const question = await clickQuestion(questionsMock[0]!.id, user);
       expect(question).toHaveClass("question--show");
@@ -126,7 +126,7 @@ describe("QuestionsPage", () => {
 
   describe("DOM Structure Tests", () => {
     it("should append all Question components to .questions section", () => {
-      const container = renderComponent();
+      const container = renderPage();
 
       const section = container.querySelector<HTMLElement>(".questions");
       const children = section?.querySelectorAll<HTMLDivElement>(".question");
@@ -136,7 +136,7 @@ describe("QuestionsPage", () => {
     });
 
     it("should render each question as a DIV element", () => {
-      const container = renderComponent();
+      const container = renderPage();
 
       const questions = container.querySelectorAll<HTMLDivElement>(".question");
       questions.forEach((q) => {
