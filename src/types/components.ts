@@ -3,5 +3,4 @@ export interface Component {
 }
 
 export interface QuestionComponent extends Component, HTMLDivElement {}
-
 export interface ButtonComponent extends Component, HTMLButtonElement {}

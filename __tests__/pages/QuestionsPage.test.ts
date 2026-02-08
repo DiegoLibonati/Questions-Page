@@ -1,6 +1,8 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
+import type { Page } from "@/types/pages";
+
 import { QuestionsPage } from "@/pages/QuestionsPage/QuestionsPage";
 
 import { questionsMock } from "@tests/__mocks__/questions.mock";
@@ -9,7 +11,7 @@ jest.doMock("@/constants/questions", () => ({
   default: questionsMock,
 }));
 
-const renderComponent = (): HTMLElement => {
+const renderComponent = (): Page => {
   const container = QuestionsPage();
   document.body.appendChild(container);
   return container;
