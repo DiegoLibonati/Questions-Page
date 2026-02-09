@@ -1,4 +1,5 @@
 import type { Page } from "@/types/pages";
+import type { QuestionComponent } from "@/types/components";
 
 import { Question } from "@/components/Question/Question";
 
@@ -23,13 +24,13 @@ export const QuestionsPage = (): Page => {
     const questionOpen = main.querySelector<HTMLDivElement>(".question--show");
 
     if (questionOpen) questionOpen.classList.remove("question--show");
-
     if (question === questionOpen) return;
 
     question?.classList.add("question--show");
   };
 
   const questions = main.querySelector<HTMLElement>(".questions");
+  const questionComponents: QuestionComponent[] = [];
 
   questionsData.forEach((question) => {
     const questionComponent = Question({
@@ -40,11 +41,14 @@ export const QuestionsPage = (): Page => {
     });
 
     questions?.append(questionComponent);
-
-    main.cleanup = (): void => {
-      questionComponent.cleanup?.();
-    };
+    questionComponents.push(questionComponent);
   });
+
+  main.cleanup = (): void => {
+    questionComponents.forEach((component) => {
+      component.cleanup?.();
+    });
+  };
 
   return main;
 };

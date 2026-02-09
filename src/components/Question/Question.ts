@@ -9,7 +9,7 @@ export const Question = ({
   description,
   onClick,
 }: QuestionProps): QuestionComponent => {
-  const divRoot = document.createElement("div");
+  const divRoot = document.createElement("div") as QuestionComponent;
   divRoot.className = "question-wrapper";
   divRoot.id = id;
 
@@ -36,19 +36,17 @@ export const Question = ({
 
   const questionBtn = divRoot.querySelector<ButtonComponent>(
     ".question__btn-manage"
-  );
+  )!;
 
-  if (questionBtn) {
-    questionBtn.addEventListener("click", (e) => {
-      onClick(e, id);
-    });
+  const handleClick = (e: MouseEvent): void => {
+    onClick(e, id);
+  };
 
-    questionBtn.cleanup = (): void => {
-      questionBtn.removeEventListener("click", (e) => {
-        onClick(e, id);
-      });
-    };
-  }
+  questionBtn.addEventListener("click", handleClick);
+
+  divRoot.cleanup = (): void => {
+    questionBtn.removeEventListener("click", handleClick);
+  };
 
   return divRoot;
 };
