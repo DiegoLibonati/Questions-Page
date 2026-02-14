@@ -2,15 +2,19 @@ import type { Question } from "@/types/app";
 
 export const questionsMock: Question[] = [
   {
-    id: "Q1",
-    title: "Question 1",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis, et eos sint expedita quisquam quia. Suscipit at architecto molestiae inventore laborum, accusantium, dolorum delectus non et cumque facere consectetur quis.",
+    id: "question-1",
+    title: "What is React?",
+    description: "React is a JavaScript library for building user interfaces.",
   },
   {
-    id: "Q2",
-    title: "Question 2",
+    id: "question-2",
+    title: "What is TypeScript?",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis, et eos sint expedita quisquam quia. Suscipit at architecto molestiae inventore laborum, accusantium, dolorum delectus non et cumque facere consectetur quis.",
+      "TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.",
+  },
+  {
+    id: "question-3",
+    title: "What is Jest?",
+    description: "Jest is a JavaScript testing framework.",
   },
 ];
