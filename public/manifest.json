@@ -1,7 +1,7 @@
 {
-  "name": "Template Vite Vanilla TS",
-  "short_name": "Template",
-  "description": "Personal template for carrying out a project with Vite Vanilla and TypeScript.",
+  "name": "Questions",
+  "short_name": "Questions",
+  "description": "I made a web page that works as a section of a future page which is a section of frequently asked questions or faq. When a question is opened it closes a question that was open.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
