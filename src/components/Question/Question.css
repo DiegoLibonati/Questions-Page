@@ -14,9 +14,9 @@
   flex-flow: column wrap;
   justify-content: center;
   background: var(--color-secondary);
-  margin: 1rem;
+  margin: 0.625rem;
   width: 90%;
-  border-radius: 1rem;
+  border-radius: 0.625rem;
 }
 
 .question__header {
@@ -24,17 +24,17 @@
   flex-direction: row wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
-  margin: 1rem;
+  padding: 0.625rem;
+  margin: 0.625rem;
 }
 
 .question__title {
-  font-size: 1.5rem;
+  font-size: 0.9375rem;
   color: var(--color-white);
 }
 
 .question__btn-manage {
-  font-size: 1.5rem;
+  font-size: 0.9375rem;
   background: none;
   border: none;
   color: var(--color-white);
@@ -48,8 +48,8 @@
 }
 
 .question__description {
-  margin-bottom: 1rem;
+  margin-bottom: 0.625rem;
   text-align: justify;
-  font-size: 1.5rem;
+  font-size: 0.9375rem;
   color: var(--color-white);
 }

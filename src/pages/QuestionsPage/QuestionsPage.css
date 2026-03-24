@@ -15,21 +15,21 @@
   justify-content: center;
   width: 80%;
   background-color: var(--color-primary);
-  border-radius: 1rem;
-  padding: 2rem;
-  margin: 1rem;
+  border-radius: 0.625rem;
+  padding: 1.25rem;
+  margin: 0.625rem;
 }
 
 .questions__title {
-  font-size: 3rem;
-  padding: 1rem;
-  letter-spacing: 0.2rem;
+  font-size: 1.875rem;
+  padding: 0.625rem;
+  letter-spacing: 0.125rem;
   text-align: center;
   color: var(--color-white);
 }
 
 @media screen and (min-width: 1024px) {
   .questions {
-    width: 50rem;
+    width: 31.25rem;
   }
 }

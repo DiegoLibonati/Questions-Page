@@ -45,7 +45,7 @@ describe("QuestionsPage", () => {
     renderPage();
 
     const firstQuestionButton = screen.getAllByRole("button", {
-      name: "open question",
+      name: "Toggle answer",
     })[0];
 
     await user.click(firstQuestionButton!);
@@ -58,7 +58,7 @@ describe("QuestionsPage", () => {
     const user = userEvent.setup();
     renderPage();
 
-    const buttons = screen.getAllByRole("button", { name: "open question" });
+    const buttons = screen.getAllByRole("button", { name: "Toggle answer" });
     const firstButton = buttons[0];
     const secondButton = buttons[1];
 
@@ -80,7 +80,7 @@ describe("QuestionsPage", () => {
     renderPage();
 
     const firstButton = screen.getAllByRole("button", {
-      name: "open question",
+      name: "Toggle answer",
     })[0];
 
     await user.click(firstButton!);

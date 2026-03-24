@@ -20,7 +20,7 @@ export const Question = ({
             <button
                 type="button"
                 class="question__btn-manage"
-                aria-label="open question"
+                aria-label="Toggle answer"
             >
                 +
             </button>

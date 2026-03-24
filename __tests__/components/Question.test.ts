@@ -52,7 +52,7 @@ describe("Question Component", () => {
   it("should render toggle button", () => {
     renderComponent(defaultProps);
 
-    const button = screen.getByRole("button", { name: "open question" });
+    const button = screen.getByRole("button", { name: "Toggle answer" });
     expect(button).toBeInTheDocument();
     expect(button).toHaveClass("question__btn-manage");
     expect(button).toHaveAttribute("type", "button");
@@ -63,7 +63,7 @@ describe("Question Component", () => {
     const user = userEvent.setup();
     renderComponent(defaultProps);
 
-    const button = screen.getByRole("button", { name: "open question" });
+    const button = screen.getByRole("button", { name: "Toggle answer" });
     await user.click(button);
 
     expect(mockOnClick).toHaveBeenCalledTimes(1);
@@ -79,7 +79,7 @@ describe("Question Component", () => {
 
     question.cleanup?.();
 
-    const button = screen.getByRole("button", { name: "open question" });
+    const button = screen.getByRole("button", { name: "Toggle answer" });
     await user.click(button);
 
     expect(mockOnClick).not.toHaveBeenCalled();
