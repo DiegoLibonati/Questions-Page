@@ -1,13 +1,13 @@
 import type { Page } from "@/types/pages";
 import type { QuestionComponent } from "@/types/components";
 
-import { Question } from "@/components/Question/Question";
+import Question from "@/components/Question/Question";
 
 import questionsData from "@/constants/questions";
 
 import "@/pages/QuestionsPage/QuestionsPage.css";
 
-export const QuestionsPage = (): Page => {
+const QuestionsPage = (): Page => {
   const main = document.createElement("main") as Page;
   main.className = "questions-page";
 
@@ -52,3 +52,5 @@ export const QuestionsPage = (): Page => {
 
   return main;
 };
+
+export default QuestionsPage;

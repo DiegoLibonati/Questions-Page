@@ -3,7 +3,7 @@ import type { ButtonComponent, QuestionComponent } from "@/types/components";
 
 import "@/components/Question/Question.css";
 
-export const Question = ({
+const Question = ({
   id,
   title,
   description,
@@ -50,3 +50,5 @@ export const Question = ({
 
   return divRoot;
 };
+
+export default Question;

@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import type { QuestionProps } from "@/types/props";
 import type { QuestionComponent } from "@/types/components";
 
-import { Question } from "@/components/Question/Question";
+import Question from "@/components/Question/Question";
 
 const renderComponent = (props: QuestionProps): QuestionComponent => {
   const container = Question(props);
