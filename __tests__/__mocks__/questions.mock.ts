@@ -1,6 +1,6 @@
 import type { Question } from "@/types/app";
 
-export const questionsMock: Question[] = [
+export const mockQuestions: Question[] = [
   {
     id: "question-1",
     title: "What is React?",
