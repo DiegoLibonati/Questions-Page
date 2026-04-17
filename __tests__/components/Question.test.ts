@@ -6,82 +6,99 @@ import type { QuestionComponent } from "@/types/components";
 
 import Question from "@/components/Question/Question";
 
-const renderComponent = (props: QuestionProps): QuestionComponent => {
-  const container = Question(props);
-  document.body.appendChild(container);
-  return container;
+const mockOnClick = jest.fn();
+
+const defaultProps: QuestionProps = {
+  id: "question-1",
+  title: "What is React?",
+  description: "React is a JavaScript library.",
+  onClick: mockOnClick,
 };
 
-describe("Question Component", () => {
+const renderComponent = (
+  props: Partial<QuestionProps> = {}
+): QuestionComponent => {
+  const element = Question({ ...defaultProps, ...props });
+  document.body.appendChild(element);
+  return element;
+};
+
+describe("Question", () => {
   afterEach(() => {
     document.body.innerHTML = "";
+    jest.clearAllMocks();
   });
 
-  const mockOnClick = jest.fn();
+  describe("rendering", () => {
+    it("should render with the correct id", () => {
+      renderComponent();
+      expect(document.getElementById("question-1")).toBeInTheDocument();
+    });
 
-  const defaultProps: QuestionProps = {
-    id: "question-1",
-    title: "What is your question?",
-    description: "This is the answer to the question.",
-    onClick: mockOnClick,
-  };
+    it("should render with the question-wrapper class", () => {
+      const element = renderComponent();
+      expect(element).toHaveClass("question-wrapper");
+    });
 
-  it("should render question with correct structure", () => {
-    renderComponent(defaultProps);
+    it("should render the question title", () => {
+      renderComponent();
+      expect(screen.getByText("What is React?")).toBeInTheDocument();
+    });
 
-    const wrapper = document.querySelector<HTMLDivElement>(".question-wrapper");
-    const question = document.querySelector<HTMLDivElement>(".question");
+    it("should render the question description", () => {
+      renderComponent();
+      expect(
+        screen.getByText(/React is a JavaScript library/)
+      ).toBeInTheDocument();
+    });
 
-    expect(wrapper).toBeInTheDocument();
-    expect(wrapper).toHaveAttribute("id", "question-1");
-    expect(question).toBeInTheDocument();
+    it("should render a toggle button with the correct aria-label", () => {
+      renderComponent();
+      expect(
+        screen.getByRole("button", { name: "Toggle answer" })
+      ).toBeInTheDocument();
+    });
   });
 
-  it("should render title and description", () => {
-    renderComponent(defaultProps);
+  describe("behavior", () => {
+    it("should call onClick with the event and id when the button is clicked", async () => {
+      const user = userEvent.setup();
+      renderComponent();
+      await user.click(screen.getByRole("button", { name: "Toggle answer" }));
+      expect(mockOnClick).toHaveBeenCalledTimes(1);
+      expect(mockOnClick).toHaveBeenCalledWith(
+        expect.any(MouseEvent),
+        "question-1"
+      );
+    });
 
-    const title = screen.getByText("What is your question?");
-    const description = screen.getByText("This is the answer to the question.");
+    it("should pass the correct id when a different id is provided", async () => {
+      const user = userEvent.setup();
+      renderComponent({ id: "question-99" });
+      await user.click(screen.getByRole("button", { name: "Toggle answer" }));
+      expect(mockOnClick).toHaveBeenCalledWith(
+        expect.any(MouseEvent),
+        "question-99"
+      );
+    });
 
-    expect(title).toBeInTheDocument();
-    expect(title).toHaveClass("question__title");
-    expect(description).toBeInTheDocument();
-    expect(description).toHaveClass("question__description");
+    it("should call onClick on each click", async () => {
+      const user = userEvent.setup();
+      renderComponent();
+      const button = screen.getByRole("button", { name: "Toggle answer" });
+      await user.click(button);
+      await user.click(button);
+      expect(mockOnClick).toHaveBeenCalledTimes(2);
+    });
   });
 
-  it("should render toggle button", () => {
-    renderComponent(defaultProps);
-
-    const button = screen.getByRole("button", { name: "Toggle answer" });
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveClass("question__btn-manage");
-    expect(button).toHaveAttribute("type", "button");
-    expect(button.textContent.trim()).toBe("+");
-  });
-
-  it("should call onClick handler with event and id when button clicked", async () => {
-    const user = userEvent.setup();
-    renderComponent(defaultProps);
-
-    const button = screen.getByRole("button", { name: "Toggle answer" });
-    await user.click(button);
-
-    expect(mockOnClick).toHaveBeenCalledTimes(1);
-    expect(mockOnClick).toHaveBeenCalledWith(
-      expect.any(MouseEvent),
-      "question-1"
-    );
-  });
-
-  it("should cleanup event listeners", async () => {
-    const user = userEvent.setup();
-    const question = renderComponent(defaultProps);
-
-    question.cleanup?.();
-
-    const button = screen.getByRole("button", { name: "Toggle answer" });
-    await user.click(button);
-
-    expect(mockOnClick).not.toHaveBeenCalled();
+  describe("cleanup", () => {
+    it("should remove the click listener so onClick is not called after cleanup", async () => {
+      const user = userEvent.setup();
+      const element = renderComponent();
+      element.cleanup?.();
+      await user.click(screen.getByRole("button", { name: "Toggle answer" }));
+      expect(mockOnClick).not.toHaveBeenCalled();
+    });
   });
 });

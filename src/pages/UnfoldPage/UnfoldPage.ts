@@ -5,11 +5,11 @@ import Question from "@/components/Question/Question";
 
 import questionsData from "@/constants/questions";
 
-import "@/pages/QuestionsPage/QuestionsPage.css";
+import "@/pages/UnfoldPage/UnfoldPage.css";
 
-const QuestionsPage = (): Page => {
+const UnfoldPage = (): Page => {
   const main = document.createElement("main") as Page;
-  main.className = "questions-page";
+  main.className = "unfold-page";
 
   main.innerHTML = `
     <section class="questions">
@@ -53,4 +53,4 @@ const QuestionsPage = (): Page => {
   return main;
 };
 
-export default QuestionsPage;
+export default UnfoldPage;

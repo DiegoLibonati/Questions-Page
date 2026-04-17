@@ -1,4 +1,4 @@
-# Questions Page
+# Unfold
 
 ## Educational Purpose
 
@@ -17,7 +17,13 @@ The application will open automatically at `http://localhost:3000`
 
 ## Description
 
-I made a web page that works as a section of a future page which is a section of frequently asked questions or faq. When a question is opened it closes a question that was open.
+**Unfold** is a lightweight FAQ (Frequently Asked Questions) accordion component built entirely with vanilla TypeScript — no frameworks, no runtime dependencies. It renders a list of questions where each item can be expanded to reveal its answer. Only one question can be open at a time: clicking an open question collapses it, and clicking a different one automatically closes the current one before opening the new one.
+
+The component is designed as a self-contained, embeddable section meant to be dropped into any web page. It follows a clean component lifecycle pattern where each element exposes an optional `cleanup()` method to safely remove event listeners when the component is unmounted, preventing memory leaks in long-lived applications.
+
+Under the hood, the architecture separates concerns into two layers: the `Question` component handles the rendering and interaction of a single expandable item, while `UnfoldPage` orchestrates the full list, manages the single-open state, and delegates cleanup to each child. Questions data is loaded from a static constants file, making it trivial to swap in dynamic data from an API.
+
+The project includes a full test suite using Jest, Testing Library, and ts-jest, with coverage enforced at 70% across branches, functions, lines, and statements. Code quality is maintained through ESLint, Prettier, and a Husky pre-commit hook that runs lint and format checks on staged files automatically.
 
 ## Technologies used
 
@@ -59,11 +65,7 @@ No production dependencies - Pure Vanilla TypeScript
 
 ## Portfolio Link
 
-[`https://www.diegolibonati.com.ar/#/project/Questions-Page`](https://www.diegolibonati.com.ar/#/project/Questions-Page)
-
-## Video
-
-https://github.com/DiegoLibonati/Questions-Page/assets/99032604/5dd910fe-d8ce-489a-85b4-3ee3c345e2d1
+[`https://www.diegolibonati.com.ar/#/project/unfold`](https://www.diegolibonati.com.ar/#/project/unfold)
 
 ## Testing
 
