@@ -5,6 +5,15 @@ import type { Page } from "@/types/pages";
 
 import UnfoldPage from "@/pages/UnfoldPage/UnfoldPage";
 
+jest.mock("@/constants/questions", () => {
+  const mockData = jest.requireActual("@tests/__mocks__/questions.mock");
+  const { mockQuestions } = mockData;
+  return {
+    __esModule: true,
+    default: mockQuestions,
+  };
+});
+
 const renderPage = (): Page => {
   const element = UnfoldPage();
   document.body.appendChild(element);
