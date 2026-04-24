@@ -1,7 +1,7 @@
 {
   "name": "Unfold",
   "short_name": "Unfold",
-  "description": "Unfold is a lightweight FAQ (Frequently Asked Questions) accordion component built entirely with vanilla TypeScript — no frameworks, no runtime dependencies. It renders a list of questions where each item can be expanded to reveal its answer. Only one question can be open at a time: clicking an open question collapses it, and clicking a different one automatically closes the current one before opening the new one.",
+  "description": "Unfold is a lightweight FAQ (Frequently Asked Questions) accordion component built entirely with vanilla TypeScript — no frameworks, no runtime dependencies.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
