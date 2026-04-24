@@ -85,9 +85,9 @@ describe("UnfoldPage", () => {
           name: "Toggle answer",
         });
         await user.click(buttons[0]!);
-        expect(document.getElementById("question-1")).toHaveClass(
-          "question--show"
-        );
+        expect(
+          document.querySelector<HTMLDivElement>("#question-1")
+        ).toHaveClass("question--show");
       });
 
       it("should close a question when its button is clicked again", async () => {
@@ -98,9 +98,9 @@ describe("UnfoldPage", () => {
         });
         await user.click(buttons[0]!);
         await user.click(buttons[0]!);
-        expect(document.getElementById("question-1")).not.toHaveClass(
-          "question--show"
-        );
+        expect(
+          document.querySelector<HTMLDivElement>("#question-1")
+        ).not.toHaveClass("question--show");
       });
 
       it("should close the previously open question when another is clicked", async () => {
@@ -111,12 +111,12 @@ describe("UnfoldPage", () => {
         });
         await user.click(buttons[0]!);
         await user.click(buttons[1]!);
-        expect(document.getElementById("question-1")).not.toHaveClass(
-          "question--show"
-        );
-        expect(document.getElementById("question-2")).toHaveClass(
-          "question--show"
-        );
+        expect(
+          document.querySelector<HTMLDivElement>("#question-1")
+        ).not.toHaveClass("question--show");
+        expect(
+          document.querySelector<HTMLDivElement>("#question-2")
+        ).toHaveClass("question--show");
       });
 
       it("should only have one question open at a time", async () => {
@@ -130,9 +130,9 @@ describe("UnfoldPage", () => {
         const openQuestions =
           document.querySelectorAll<HTMLDivElement>(".question--show");
         expect(openQuestions).toHaveLength(1);
-        expect(document.getElementById("question-3")).toHaveClass(
-          "question--show"
-        );
+        expect(
+          document.querySelector<HTMLDivElement>("#question-3")
+        ).toHaveClass("question--show");
       });
     });
   });
@@ -149,9 +149,9 @@ describe("UnfoldPage", () => {
       element.cleanup?.();
       const buttons = screen.getAllByRole("button", { name: "Toggle answer" });
       await user.click(buttons[0]!);
-      expect(document.getElementById("question-1")).not.toHaveClass(
-        "question--show"
-      );
+      expect(
+        document.querySelector<HTMLDivElement>("#question-1")
+      ).not.toHaveClass("question--show");
     });
   });
 });

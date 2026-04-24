@@ -32,7 +32,9 @@ describe("Question", () => {
   describe("rendering", () => {
     it("should render with the correct id", () => {
       renderComponent();
-      expect(document.getElementById("question-1")).toBeInTheDocument();
+      expect(
+        document.querySelector<HTMLDivElement>("#question-1")
+      ).toBeInTheDocument();
     });
 
     it("should render with the question-wrapper class", () => {
