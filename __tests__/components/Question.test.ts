@@ -31,10 +31,8 @@ describe("Question", () => {
 
   describe("rendering", () => {
     it("should render with the correct id", () => {
-      renderComponent();
-      expect(
-        document.querySelector<HTMLDivElement>("#question-1")
-      ).toBeInTheDocument();
+      const element = renderComponent();
+      expect(element).toHaveAttribute("id", "question-1");
     });
 
     it("should render with the question-wrapper class", () => {
