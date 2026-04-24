@@ -70,7 +70,9 @@ describe("UnfoldPage", () => {
 
     it("should render no question as open initially", () => {
       renderPage();
-      expect(document.querySelector(".question--show")).not.toBeInTheDocument();
+      expect(
+        document.querySelector<HTMLDivElement>(".question--show")
+      ).not.toBeInTheDocument();
     });
   });
 
